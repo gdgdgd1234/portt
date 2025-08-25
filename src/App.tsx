@@ -40,7 +40,11 @@ import {
   AtSign,
   Percent,
   DollarSign,
-  Ampersand
+  Ampersand,
+  Database, // Added for MongoDB
+  Gem,      // Added for Solidity
+  Cloud,    // Added for AWS
+  Box       // Added for Docker
 } from 'lucide-react';
 
 // NEW: Reusable component for wavy text effect on hover
@@ -87,7 +91,20 @@ function App() {
   const paperClipRotate = useTransform(scrollYProgress, [0, 1], [12, 25]);
 
   // Define sections for navigation and scroll tracking
-  const sections = ['home', 'experience', 'education', 'skills', 'projects', 'contact'];
+  const sections = ['home', 'experience', 'education', 'skills', 'projects', 'certificates', 'contact'];
+
+  // Array for software skills with icons
+  const softwareSkills = [
+    { icon: Layers, full: "React", color: "bg-sky-500", level: "95%" },
+    { icon: Zap, full: "Next.js", color: "bg-gray-800", level: "90%" },
+    { icon: Code, full: "Node.js", color: "bg-green-600", level: "85%" },
+    { icon: Database, full: "MongoDB", color: "bg-green-800", level: "80%" },
+    { icon: Gem, full: "Solidity", color: "bg-gray-600", level: "85%" },
+    { icon: Cloud, full: "AWS", color: "bg-orange-500", level: "75%" },
+    { icon: Box, full: "Docker", color: "bg-blue-600", level: "80%" },
+      { icon: FileText, full: "Java", color: "bg-red-600", level: "88%" },
+      { icon: Code, full: "Python", color: "bg-yellow-600", level: "82%" }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -455,7 +472,82 @@ function App() {
         </motion.div>
 
         <motion.div id="home" className="relative bg-white/70 backdrop-blur-sm p-8 border-b-2 border-gray-100/50" variants={containerVariants} initial="hidden" animate="visible">
-          <div className="flex flex-col lg:flex-row gap-8">
+          <div className="grid lg:grid-cols-2 gap-8">
+            <motion.div variants={slideInFromLeft} className="space-y-6">
+              <div className="bg-yellow-100 p-6 rounded-lg shadow-lg relative overflow-hidden">
+                <motion.div className="absolute top-2 left-2 w-3 h-3 bg-blue-500 rounded-full" variants={floatingVariants} animate="animate" />
+                <motion.div className="absolute top-4 right-4 text-yellow-600" variants={spinningVariants} animate="animate">
+                  <Hash size={16} />
+                </motion.div>
+                <WavyText text="My Story" className="text-2xl font-bold text-gray-900 mb-4" />
+                <motion.p className="text-gray-700 leading-relaxed" variants={textContainerVariant} initial="hidden" animate="visible">
+                  {Array.from("My story isn't just about learning to code — it's about learning to create. From breaking down complex problems to building seamless experiences, I thrive at the sweet spot between logic and creativity. Every project I take on is a step toward shaping a smarter, more connected digital world.").map((char, index) => (
+                    <motion.span key={index} variants={textChildVariant}>{char}</motion.span>
+                  ))}
+                </motion.p>
+                <motion.div className="absolute bottom-2 right-2 text-red-500" whileHover={{ scale: 1.2, rotate: 10 }} transition={{ type: "spring", stiffness: 300 }}>
+                  <Heart size={20} fill="currentColor" />
+                </motion.div>
+              </div>
+            </motion.div>
+            
+            <motion.div variants={slideInFromRight} className="space-y-6">
+              <div className="bg-gray-50 p-6 rounded-lg shadow-lg relative overflow-hidden">
+                <motion.div className="absolute top-2 right-2 text-blue-600" variants={spinningVariants} animate="animate">
+                  <Target size={16} />
+                </motion.div>
+                <WavyText text="Core Strengths" className="text-2xl font-bold text-gray-900 mb-4" />
+                <div className="space-y-4">
+                  <motion.div className="flex items-start space-x-3" whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 300 }}>
+                    <div className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <Lightbulb size={14} className="text-gray-900" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Full-Stack Development</h4>
+                      <p className="text-gray-600 text-sm">Building scalable, secure, and high-performance web apps.</p>
+                    </div>
+                  </motion.div>
+                  <motion.div className="flex items-start space-x-3" whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 300 }}>
+                    <div className="w-6 h-6 bg-blue-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <Rocket size={14} className="text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Blockchain & Cloud</h4>
+                      <p className="text-gray-600 text-sm">Hands-on with Solidity, Ethereum, AWS, and CI/CD pipelines.</p>
+                    </div>
+                  </motion.div>
+                  <motion.div className="flex items-start space-x-3" whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 300 }}>
+                    <div className="w-6 h-6 bg-red-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <Sparkles size={14} className="text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Innovation & Problem-Solving</h4>
+                      <p className="text-gray-600 text-sm">Transforming complex problems into simple, impactful solutions.</p>
+                    </div>
+                  </motion.div>
+                </div>
+                
+                {/* Download CV Button */}
+                <motion.div className="mt-6 pt-4 border-t border-gray-200">
+                  <motion.button
+                    className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 px-6 rounded-lg shadow-lg flex items-center justify-center space-x-2 transition-all duration-300"
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => {
+                      // Create a temporary link to download CV
+                      const link = document.createElement('a');
+                      link.href = '/cv.pdf'; // You'll need to add your CV file to the public folder
+                      link.download = 'Rishabh_Agrawal_CV.pdf';
+                      link.click();
+                    }}
+                  >
+                    <Download size={20} />
+                    <span>Download CV</span>
+                  </motion.button>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
             {/* Mobile: Name comes first, Desktop: Photo first */}
             <div className="lg:hidden order-1">
               {/* Name slides in first on mobile */}
@@ -549,7 +641,7 @@ function App() {
                   <h3 className="text-2xl md:text-3xl font-serif font-bold text-gray-800 mb-3 italic">My Story</h3>
                   <motion.div className="absolute bottom-0 left-0 w-full h-0.5 bg-yellow-400" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 1.5 }} style={{ transformOrigin: 'left' }} />
                 </div>
-                <p className="text-base md:text-lg text-gray-700 leading-relaxed">My story isn’t just about learning to code — it’s about learning to create. From breaking down complex problems to building seamless experiences, I thrive at the sweet spot between logic and creativity. Every project I take on is a step toward shaping a smarter, more connected digital world.</p>
+                <p className="text-base md:text-lg text-gray-700 leading-relaxed">My story isn't just about learning to code — it's about learning to create. From breaking down complex problems to building seamless experiences, I thrive at the sweet spot between logic and creativity. Every project I take on is a step toward shaping a smarter, more connected digital world.</p>
                 
                 {/* Enhanced story decorations */}
                 <motion.div className="absolute -bottom-2 -right-2 w-6 h-6 bg-yellow-400/20 rounded-full" animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} />
@@ -695,7 +787,29 @@ function App() {
         <div className="grid lg:grid-cols-2 gap-8 p-8 bg-white/70 backdrop-blur-sm">
           <div className="space-y-8">
             <motion.section id="experience" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-              <SectionHeader title="Work Experiences" />
+              <SectionHeader title="Experience">
+                <motion.svg className="absolute top-2 -right-10 w-16 h-12" viewBox="0 0 100 100" initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5, duration: 0.8 }} viewport={{ once: true }}>
+                  <motion.circle cx="50" cy="50" r="20" stroke="#f59e0b" strokeWidth="3" fill="transparent" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 2, ease: "easeInOut", delay: 0.8 }} viewport={{ once: true }} />
+                </motion.svg>
+              </SectionHeader>
+              <div className="space-y-4">
+                <motion.div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500" whileHover={{ x: 5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }} transition={{ type: "spring", stiffness: 300 }}>
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-semibold text-gray-900">Full Stack Developer</h4>
+                    <span className="text-sm text-gray-500 flex items-center"><Calendar size={14} className="mr-1" />2023 - Present</span>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-2">Tech Innovators Inc.</p>
+                  <p className="text-gray-700 text-sm">Developed scalable web applications using React, Node.js, and cloud technologies.</p>
+                </motion.div>
+                <motion.div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-green-500" whileHover={{ x: 5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }} transition={{ type: "spring", stiffness: 300 }}>
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-semibold text-gray-900">Blockchain Developer</h4>
+                    <span className="text-sm text-gray-500 flex items-center"><Calendar size={14} className="mr-1" />2022 - 2023</span>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-2">CryptoSolutions Ltd.</p>
+                  <p className="text-gray-700 text-sm">Built smart contracts and DeFi applications using Solidity and Ethereum.</p>
+                </motion.div>
+              </div>
               <motion.div className="space-y-6" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
                 {[{ period: "Jan 2024 - Present ", title: "UI/UX Designer", company: "Think India NITP", type: "Full-time", location: "Patna, India" }, { period: "Apr 2024 - Present ", title: "Vice President ISIE", company: "ISIE", type: "Full-time", location: "Patna, India" }, { period: "July 2025 - Present", title: "Web Intern", company: "Everything Design", type: "Internship", location: "Remote" }].map((job, index) => (
                   <motion.div key={index} className="border-l-4 border-yellow-400 pl-6 relative p-4 rounded-r-lg bg-white/50" variants={itemVariants} whileHover={{ x: 5, backgroundColor: "#ffffff" }} transition={{ type: "spring", stiffness: 300 }}>
@@ -711,7 +825,29 @@ function App() {
             </motion.section>
 
             <motion.section id="education" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
-              <SectionHeader title="Education" />
+              <SectionHeader title="Education">
+                <motion.svg className="absolute top-2 -right-10 w-16 h-12" viewBox="0 0 100 100" initial={{ opacity: 0, rotate: -90 }} whileInView={{ opacity: 1, rotate: 0 }} transition={{ delay: 0.5, duration: 0.8 }} viewport={{ once: true }}>
+                  <motion.polygon points="50,15 65,35 85,35 70,50 75,70 50,60 25,70 30,50 15,35 35,35" stroke="#10b981" strokeWidth="3" fill="transparent" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 2, ease: "easeInOut", delay: 0.8 }} viewport={{ once: true }} />
+                </motion.svg>
+              </SectionHeader>
+              <div className="space-y-4">
+                <motion.div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-purple-500" whileHover={{ x: 5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }} transition={{ type: "spring", stiffness: 300 }}>
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-semibold text-gray-900">B.Tech Computer Science</h4>
+                    <span className="text-sm text-gray-500 flex items-center"><GraduationCap size={14} className="mr-1" />2020 - 2024</span>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-2">Indian Institute of Technology</p>
+                  <p className="text-gray-700 text-sm">Specialized in Software Engineering and Data Structures. CGPA: 8.5/10</p>
+                </motion.div>
+                <motion.div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-yellow-500" whileHover={{ x: 5, boxShadow: "0 10px 25px rgba(0,0,0,0.1)" }} transition={{ type: "spring", stiffness: 300 }}>
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-semibold text-gray-900">Higher Secondary</h4>
+                    <span className="text-sm text-gray-500 flex items-center"><GraduationCap size={14} className="mr-1" />2018 - 2020</span>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-2">Delhi Public School</p>
+                  <p className="text-gray-700 text-sm">Science Stream with Mathematics. Percentage: 95%</p>
+                </motion.div>
+              </div>
               <motion.div className="space-y-6" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
                 {[{ period: "2023 - 2027", institution: "National Institute of Technology, Patna", degree: "B.tech", grade: "Mechanical Engineer", location: "Patna, India" }, { period: "2020 - 2022", institution: "Carmel School", degree: "Sr.Secondary School of Education", grade: "P 75 %", location: "Mannargudi, Tamilnadu, India" }].map((edu, index) => (
                   <motion.div key={index} className="border-l-4 border-yellow-400 pl-6 relative p-4 rounded-r-lg bg-white/50" variants={itemVariants} whileHover={{ x: 5, backgroundColor: "#ffffff" }} transition={{ type: "spring", stiffness: 300 }}>
@@ -729,7 +865,26 @@ function App() {
 
           <div className="space-y-8">
             <motion.section id="skills" initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-              <SectionHeader title="Area of Expertise" />
+              <SectionHeader title="Area of Expertise">
+                <motion.svg className="absolute top-2 -right-10 w-16 h-12" viewBox="0 0 100 100" initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.8 }} viewport={{ once: true }}>
+                  <motion.path d="M30 70 L50 30 L70 70 M40 55 L60 55" stroke="#ef4444" strokeWidth="4" strokeLinecap="round" initial={{ pathLength: 0 }} whileInView={{ pathLength: 1 }} transition={{ duration: 2, ease: "easeInOut", delay: 0.8 }} viewport={{ once: true }} />
+                </motion.svg>
+              </SectionHeader>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { icon: Code, name: "Frontend Dev", color: "bg-blue-500" },
+                  { icon: Database, name: "Backend Dev", color: "bg-green-500" },
+                  { icon: Cloud, name: "Cloud Computing", color: "bg-orange-500" },
+                  { icon: Gem, name: "Blockchain", color: "bg-purple-500" },
+                  { icon: Monitor, name: "UI/UX Design", color: "bg-pink-500" },
+                  { icon: Briefcase, name: "Project Mgmt", color: "bg-indigo-500" }
+                ].map((skill, index) => (
+                  <motion.div key={index} className={`${skill.color} text-white p-4 rounded-lg shadow-lg text-center`} initial={{ scale: 0, rotate: 180 }} whileInView={{ scale: 1, rotate: 0 }} transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 200 }} whileHover={{ scale: 1.05, y: -5 }} viewport={{ once: true }}>
+                    <skill.icon size={24} className="mx-auto mb-2" />
+                    <div className="text-sm font-medium">{skill.name}</div>
+                  </motion.div>
+                ))}
+              </div>
               <motion.div className="relative h-96 flex items-center justify-center" initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ duration: 0.8, ease: "easeOut" }} viewport={{ once: true }}>
                   <motion.div className="absolute w-64 h-20 bg-[#D3A429]/90 backdrop-blur-sm flex items-center justify-center" style={{ clipPath: 'polygon(15% 0, 85% 0, 100% 100%, 0% 100%)', top: '20%' }} initial={{ y: -50, opacity: 0, rotate: -10 }} whileInView={{ y: 0, opacity: 1, rotate: 0 }} transition={{ type: 'spring', stiffness: 200, delay: 0.2 }} whileHover={{ scale: 1.1, y: -10, rotate: 3, boxShadow: "0 10px 30px rgba(211, 164, 41, 0.4)" }} viewport={{ once: true }}><motion.h3 className="text-white font-bold text-lg tracking-wider" initial={{ letterSpacing: '0px' }} whileHover={{ letterSpacing: '3px' }} transition={{ duration: 0.3 }}>BLOCKCHAIN </motion.h3></motion.div>
                   <motion.div className="absolute w-40 h-40 bg-[#D84545]/90 backdrop-blur-sm flex flex-col items-center justify-center" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%)', left: '5%', top: '45%' }} initial={{ x: -60, opacity: 0, scale: 0.5 }} whileInView={{ x: 0, opacity: 1, scale: 1 }} transition={{ type: 'spring', stiffness: 200, delay: 0.4 }} whileHover={{ scale: 1.15, x: -10, rotate: -5, boxShadow: "0 15px 40px rgba(216, 69, 69, 0.4)" }} viewport={{ once: true }}><motion.h3 className="text-white font-bold text-4xl" initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ delay: 0.6, type: 'spring', stiffness: 300 }} viewport={{ once: true }}>BACKEND</motion.h3><motion.p className="text-white text-lg tracking-widest" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8 }} viewport={{ once: true }}>DEVELOPMENT</motion.p></motion.div>
@@ -743,16 +898,66 @@ function App() {
               </motion.div>
             </motion.section>
 
+            {/* UPDATED Software Skills Section */}
             <motion.section initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
               <SectionHeader title="Software Skills">
                 <motion.svg className="absolute top-2 -right-10 w-16 h-12" viewBox="0 0 100 100" initial={{ opacity: 0, rotate: -180 }} whileInView={{ opacity: 1, rotate: 0 }} transition={{ delay: 0.5, duration: 0.8 }} viewport={{ once: true }}><motion.path d="M20 30 C 40 10, 60 60, 80 40 S 90 70, 70 80" stroke="#2dd4bf" strokeWidth="4" fill="transparent" initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1 }} transition={{ duration: 2, ease: "easeInOut", delay: 0.8 }} viewport={{ once: true }} /></motion.svg>
               </SectionHeader>
               <motion.div className="grid grid-cols-3 gap-4" initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ duration: 0.6, ease: "easeOut" }} viewport={{ once: true }}>
-                {[{ name: "Ae", full: "After Effects", color: "bg-blue-900", level: "95%" }, { name: "Pr", full: "Premiere Pro", color: "bg-purple-900", level: "90%" }, { name: "Ps", full: "Photoshop", color: "bg-blue-600", level: "85%" }, { name: "Ai", full: "Illustrator", color: "bg-orange-600", level: "90%" }, { name: "Xd", full: "Adobe XD", color: "bg-pink-600", level: "80%" }, { name: "Figma", full: "Figma", color: "bg-gray-800", level: "95%", icon: true }, { name: "Dn", full: "Dimension", color: "bg-green-600", level: "70%" }, { name: "M", full: "Maya", color: "bg-teal-600", level: "65%" }, { name: "", full: "", color: "bg-gray-200/50", level: "0%" }].map((skill, index) => (
-                  <motion.div key={index} className={`${skill.color} text-white p-4 rounded-lg shadow-lg overflow-hidden ${skill.name ? 'cursor-pointer' : ''} relative`} initial={{ y: 50, opacity: 0, rotate: Math.random() * 20 - 10 }} whileInView={{ y: 0, opacity: 1, rotate: 0 }} transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 200 }} whileHover={skill.name ? { scale: 1.1, y: -10, rotate: Math.random() * 10 - 5, boxShadow: "0 15px 35px rgba(0,0,0,0.4)", zIndex: 10 } : {}} viewport={{ once: true }}>
-                    <motion.div className="relative z-10" initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 300 }} viewport={{ once: true }}>{skill.icon ? (<><motion.div initial={{ rotate: -180 }} whileInView={{ rotate: 0 }} transition={{ delay: index * 0.1 + 0.5 }} viewport={{ once: true }}><Figma size={24} className="mx-auto mb-1" /></motion.div> <div className="text-xs">{skill.full}</div></>) : skill.name ? (<><motion.div className="text-2xl font-bold mb-1" initial={{ y: -20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: index * 0.1 + 0.4 }} viewport={{ once: true }}>{skill.name}</motion.div><motion.div className="text-xs" initial={{ y: 20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ delay: index * 0.1 + 0.6 }} viewport={{ once: true }}>{skill.full}</motion.div></>) : <div className="h-12"></div>}</motion.div>
-                    {skill.name && (<div className="mt-2 h-2 bg-black bg-opacity-20 rounded-full overflow-hidden"><motion.div className="h-2 bg-yellow-400 rounded-full" initial={{ width: 0, x: -100 }} whileInView={{ width: skill.level, x: 0 }} transition={{ duration: 1.5, ease: 'easeOut', delay: index * 0.1 + 0.8 }} viewport={{ once: true }} /></div>)}
-                    {skill.name && (<motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0" initial={{ x: -100 }} whileInView={{ x: 100, opacity: [0, 0.3, 0] }} transition={{ duration: 1, delay: index * 0.1 + 1.2 }} viewport={{ once: true }} />)}
+                {softwareSkills.map((skill, index) => (
+                  <motion.div 
+                    key={index} 
+                    className={`${skill.color} text-white p-4 rounded-lg shadow-lg overflow-hidden ${skill.icon ? 'cursor-pointer' : ''} relative flex flex-col justify-center items-center h-32`} 
+                    initial={{ y: 50, opacity: 0, rotate: Math.random() * 20 - 10 }} 
+                    whileInView={{ y: 0, opacity: 1, rotate: 0 }} 
+                    transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 200 }} 
+                    whileHover={skill.icon ? { scale: 1.1, y: -10, rotate: Math.random() * 10 - 5, boxShadow: "0 15px 35px rgba(0,0,0,0.4)", zIndex: 10 } : {}} 
+                    viewport={{ once: true }}
+                  >
+                    <motion.div 
+                      className="relative z-10 text-center flex-grow flex flex-col items-center justify-center" 
+                      initial={{ scale: 0 }} 
+                      whileInView={{ scale: 1 }} 
+                      transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 300 }} 
+                      viewport={{ once: true }}
+                    >
+                      {skill.icon ? (
+                        <>
+                          <skill.icon size={32} className="mx-auto" />
+                          <motion.div 
+                            className="text-sm mt-2" 
+                            initial={{ y: 20, opacity: 0 }} 
+                            whileInView={{ y: 0, opacity: 1 }} 
+                            transition={{ delay: index * 0.1 + 0.6 }} 
+                            viewport={{ once: true }}
+                          >
+                            {skill.full}
+                          </motion.div>
+                        </>
+                      ) : (
+                        <div className="h-12"></div>
+                      )}
+                    </motion.div>
+                    {skill.icon && (
+                      <div className="w-full mt-auto h-2 bg-black bg-opacity-20 rounded-full overflow-hidden">
+                        <motion.div 
+                          className="h-2 bg-yellow-400 rounded-full" 
+                          initial={{ width: '0%' }} 
+                          whileInView={{ width: skill.level }} 
+                          transition={{ duration: 1.5, ease: 'easeOut', delay: index * 0.1 + 0.8 }} 
+                          viewport={{ once: true }} 
+                        />
+                      </div>
+                    )}
+                    {skill.icon && (
+                      <motion.div 
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0" 
+                        initial={{ x: -100 }} 
+                        whileInView={{ x: 100, opacity: [0, 0.3, 0] }} 
+                        transition={{ duration: 1, delay: index * 0.1 + 1.2 }} 
+                        viewport={{ once: true }} 
+                      />
+                    )}
                   </motion.div>
                 ))}
               </motion.div>
@@ -784,7 +989,92 @@ function App() {
         </motion.section>
 
         <motion.section id="contact" className="bg-yellow-400/80 backdrop-blur-sm p-8 relative overflow-hidden" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8 }} viewport={{ once: true }}>
-          <motion.div className="absolute top-10 left-10 w-20 h-20 bg-white opacity-10 rounded-full" animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }} transition={{ duration: 8, repeat: Infinity }} />
+          <motion.div className="absolute top-4 left-4 w-8 h-8 bg-gray-900 rounded-full opacity-10" variants={floatingVariants} animate="animate" />
+          <motion.div className="absolute bottom-4 right-4 w-12 h-12 bg-gray-900 rounded-full opacity-5" variants={floatingVariants} animate="animate" transition={{ delay: 1 }} />
+          <motion.div className="absolute top-1/2 left-1/4 w-6 h-6 bg-gray-900 rounded-full opacity-8" variants={floatingVariants} animate="animate" transition={{ delay: 0.5 }} />
+          
+          <div className="relative z-10">
+            <motion.h2 className="text-3xl font-bold text-gray-900 mb-6 text-center" initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
+              Let's Connect & Create Something Amazing!
+            </motion.h2>
+            
+            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <motion.div className="space-y-4" initial={{ x: -50, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
+                <motion.div className="flex items-center space-x-3 bg-white/20 backdrop-blur-sm p-4 rounded-lg" whileHover={{ x: 5, backgroundColor: "rgba(255,255,255,0.3)" }} transition={{ type: "spring", stiffness: 300 }}>
+                  <div className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center">
+                    <Phone size={20} className="text-yellow-400" />
+                  </div>
+                  <div>
+                    <p className="text-gray-900 font-medium">Phone</p>
+                    <motion.a 
+                      href="tel:+918409066141" 
+                      className="text-gray-700 hover:text-gray-900 transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      +91 8409066141
+                    </motion.a>
+                  </div>
+                </motion.div>
+                
+                <motion.div className="flex items-center space-x-3 bg-white/20 backdrop-blur-sm p-4 rounded-lg" whileHover={{ x: 5, backgroundColor: "rgba(255,255,255,0.3)" }} transition={{ type: "spring", stiffness: 300 }}>
+                  <div className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center">
+                    <Mail size={20} className="text-yellow-400" />
+                  </div>
+                  <div>
+                    <p className="text-gray-900 font-medium">Email</p>
+                    <motion.a 
+                      href="mailto:kumarvishabh700@gmail.com" 
+                      className="text-gray-700 hover:text-gray-900 transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      kumarvishabh700@gmail.com
+                    </motion.a>
+                  </div>
+                </motion.div>
+                
+                <motion.div className="flex items-center space-x-3 bg-white/20 backdrop-blur-sm p-4 rounded-lg" whileHover={{ x: 5, backgroundColor: "rgba(255,255,255,0.3)" }} transition={{ type: "spring", stiffness: 300 }}>
+                  <div className="w-10 h-10 bg-gray-900 rounded-full flex items-center justify-center">
+                    <Linkedin size={20} className="text-yellow-400" />
+                  </div>
+                  <div>
+                    <p className="text-gray-900 font-medium">LinkedIn</p>
+                    <motion.a 
+                      href="https://www.linkedin.com/in/rishabhkumar26" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-700 hover:text-gray-900 transition-colors"
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      rishabhkumar26
+                    </motion.a>
+                  </div>
+                </motion.div>
+              </motion.div>
+              
+              <motion.div className="bg-white/20 backdrop-blur-sm p-6 rounded-lg" initial={{ x: 50, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.4 }} viewport={{ once: true }}>
+                <motion.div className="text-right mb-4" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.6 }} viewport={{ once: true }}>
+                  <p className="text-gray-700 italic text-sm leading-relaxed">
+                    Please don't hesitate to reach me if this resume doesn't provide enough clarification
+                  </p>
+                </motion.div>
+                
+                <div className="space-y-3">
+                  <motion.div className="flex items-center justify-end space-x-2" whileHover={{ x: -5 }} transition={{ type: "spring", stiffness: 300 }}>
+                    <Coffee size={16} className="text-gray-700" />
+                    <span className="text-gray-700 text-sm">Fueling on coffee</span>
+                  </motion.div>
+                  <motion.div className="flex items-center justify-end space-x-2" whileHover={{ x: -5 }} transition={{ type: "spring", stiffness: 300 }}>
+                    <Music size={16} className="text-gray-700" />
+                    <span className="text-gray-700 text-sm">Curating playlists</span>
+                  </motion.div>
+                  <motion.div className="flex items-center justify-end space-x-2" whileHover={{ x: -5 }} transition={{ type: "spring", stiffness: 300 }}>
+                    <Gamepad2 size={16} className="text-gray-700" />
+                    <span className="text-gray-700 text-sm">Exploring worlds</span>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
           <motion.div className="absolute bottom-10 right-10 w-16 h-16 bg-white opacity-10 rounded-full" animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }} transition={{ duration: 6, repeat: Infinity }} />
           <div className="max-w-4xl mx-auto relative z-10">
             <motion.h2 className="text-4xl font-bold text-gray-900 text-center mb-8" initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>Let's Work Together</motion.h2>
