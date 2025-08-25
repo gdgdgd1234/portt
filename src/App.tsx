@@ -1058,57 +1058,5 @@ function App() {
                     Please don't hesitate to reach me if this resume doesn't provide enough clarification
                   </p>
                 </motion.div>
-                
-                <div className="space-y-3">
-                  <motion.div className="flex items-center justify-end space-x-2" whileHover={{ x: -5 }} transition={{ type: "spring", stiffness: 300 }}>
-                    <Coffee size={16} className="text-gray-700" />
-                    <span className="text-gray-700 text-sm">Fueling on coffee</span>
-                  </motion.div>
-                  <motion.div className="flex items-center justify-end space-x-2" whileHover={{ x: -5 }} transition={{ type: "spring", stiffness: 300 }}>
-                    <Music size={16} className="text-gray-700" />
-                    <span className="text-gray-700 text-sm">Curating playlists</span>
-                  </motion.div>
-                  <motion.div className="flex items-center justify-end space-x-2" whileHover={{ x: -5 }} transition={{ type: "spring", stiffness: 300 }}>
-                    <Gamepad2 size={16} className="text-gray-700" />
-                    <span className="text-gray-700 text-sm">Exploring worlds</span>
-                  </motion.div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-          <motion.div className="absolute bottom-10 right-10 w-16 h-16 bg-white opacity-10 rounded-full" animate={{ scale: [1.2, 1, 1.2], rotate: [360, 180, 0] }} transition={{ duration: 6, repeat: Infinity }} />
-          <div className="max-w-4xl mx-auto relative z-10">
-            <motion.h2 className="text-4xl font-bold text-gray-900 text-center mb-8" initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>Let's Work Together</motion.h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <motion.div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg" initial={{ x: -50, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.2 }} viewport={{ once: true }}>
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Message</h3>
-                <form className="space-y-4">
-                  <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }}><input type="text" placeholder="Your Name" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 outline-none transition-all bg-white/50" /></motion.div>
-                  <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }}><input type="email" placeholder="Your Email" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 outline-none transition-all bg-white/50" /></motion.div>
-                  <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }}><textarea placeholder="Your Message" rows={5} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-yellow-500 focus:ring-2 focus:ring-yellow-200 outline-none transition-all resize-none bg-white/50"></textarea></motion.div>
-                  <motion.button className="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold transition-colors" whileHover={{ backgroundColor: "#1f2937", scale: 1.02, boxShadow: "0 10px 25px rgba(0,0,0,0.2)" }} whileTap={{ scale: 0.98 }} transition={{ type: "spring", stiffness: 300 }}>Send Message</motion.button>
-                </form>
-              </motion.div>
-              <motion.div className="space-y-6" initial={{ x: 50, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} transition={{ duration: 0.6, delay: 0.4 }} viewport={{ once: true }}>
-                <motion.div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg" whileHover={{ y: -5 }} transition={{ type: "spring", stiffness: 300 }}>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">Contact Information</h3>
-                  <div className="space-y-4">
-                    {[{ icon: Phone, text: "+91 7904692069" }, { icon: Mail, text: "aavi403@gmail.com" }, { icon: MapPin, text: "Thanjavur, Tamil Nadu, India" }, { icon: ExternalLink, text: "behance.net/Aravindh_A" }].map((item, index) => (<motion.div key={index} className="flex items-center space-x-3" whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 300 }}><item.icon className="text-yellow-600" size={20} /> <span className="text-gray-700">{item.text}</span></motion.div>))}
-                  </div>
-                </motion.div>
-                <motion.div className="bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg" whileHover={{ y: -5 }} transition={{ type: "spring", stiffness: 300 }}>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Available For</h3>
-                  <div className="space-y-2">
-                    {["Freelance Projects", "Full-time Opportunities", "Collaborations"].map((item, index) => (<motion.div key={index} className="flex items-center space-x-2" initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.1 }} viewport={{ once: true }}><motion.div className="w-2 h-2 bg-green-500 rounded-full" animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }} /> <span className="text-gray-700">{item}</span></motion.div>))}
-                  </div>
-                </motion.div>
-              </motion.div>
-            </div>
-          </div>
-        </motion.section>
-      </motion.div>
-    </div>
-  );
-}
 
 export default App;
