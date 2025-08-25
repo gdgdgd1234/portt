@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Mail, ExternalLink, ChevronDown, Code, Palette, Zap, Users, Award, Calendar, FileText } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Mail, ExternalLink, ChevronDown, Code, Palette, Zap, Users, Award, Calendar, FileText, Download } from 'lucide-react';
+import {
   Mail,
   Phone,
   MapPin,
@@ -82,8 +83,8 @@ const WavyText = ({ text, className, el: Wrapper = 'h3' }: { text: string, class
             ))}
         </motion.div>
     </Wrapper>
-  )
-}
+  );
+};
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -755,7 +756,7 @@ function App() {
                   <motion.div className="absolute bottom-2 left-0 w-full h-0.5 bg-yellow-400" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.6, ease: 'easeOut', delay: 2.8 }} style={{ transformOrigin: 'left' }} />
                  </div>
                 <motion.ul className="space-y-3">
-                  {[{ icon: Lightbulb, title: "Full-Stack Development", description: "Building scalable, secure, and high-performance web apps.", color: "text-yellow-500" }, { icon: Rocket, title: "Blockchain & Cloud", description: "Hands-on with Solidity, Ethereum, AWS, and CI/CD pipelines.", color: "text-blue-500" }, { icon: Sparkles, title: "Innovation & Problem-Solving", description: "ransforming complex problems into simple, impactful solutions.", color: "text-red-500" }].map((strength, index) => (
+                  {[{ icon: Lightbulb, title: "Full-Stack Development", description: "Building scalable, secure, and high-performance web apps.", color: "text-yellow-500" }, { icon: Rocket, title: "Blockchain & Cloud", description: "Hands-on with Solidity, Ethereum, AWS, and CI/CD pipelines.", color: "text-blue-500" }, { icon: Sparkles, title: "Innovation & Problem-Solving", description: "Transforming complex problems into simple, impactful solutions.", color: "text-red-500" }].map((strength, index) => (
                     <motion.li key={index} className="flex items-start gap-3" initial={{ x: 50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5, delay: 3 + index * 0.1 }}><strength.icon size={22} className={`${strength.color} mt-1 flex-shrink-0`} /><div><h4 className="font-bold text-gray-800 text-base md:text-lg">{strength.title}</h4> <p className="text-sm md:text-base text-gray-600">{strength.description}</p></div></motion.li>
                   ))}
                 </motion.ul>
@@ -1105,7 +1106,8 @@ function App() {
             </div>
           </div>
         </motion.section>
-      </div>
+      </motion.div>
+    </div>
   );
 }
 
