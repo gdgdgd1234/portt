@@ -781,7 +781,7 @@ function App() {
                 <div className="text-gray-700 mt-1">kumarvrishabh700@gmail.com</div>
               </motion.div>
             </motion.div>
-          </div>
+          </motion.div>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 p-8 bg-white/70 backdrop-blur-sm">
@@ -1105,7 +1105,7 @@ function App() {
             </div>
           </div>
         </motion.section>
-      </motion.div>
+      </div>
     </div>
   );
 }
